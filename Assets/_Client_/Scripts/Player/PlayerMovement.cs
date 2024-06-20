@@ -2,15 +2,23 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private SurfaceSlider _surfaceSlider;
-    [SerializeField] private PlayerAnimator _playerAnimator;
-    [SerializeField] private float _speedMove;
+    [SerializeField]
+    private SurfaceSlider _surfaceSlider;
+
+    [SerializeField]
+    private PlayerAnimator _playerAnimator;
+
+    [SerializeField]
+    private float _speedMove;
 
     private Rigidbody _rigidbody;
+
+
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
+        
     }
 
     public void Move(Vector3 moveVector)

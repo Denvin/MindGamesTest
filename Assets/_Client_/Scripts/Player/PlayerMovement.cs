@@ -1,8 +1,9 @@
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private SurfaceSlider _surfaceSlider;
+    [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private float _speedMove;
 
     private Rigidbody _rigidbody;
@@ -20,6 +21,6 @@ public class CharacterMovement : MonoBehaviour
         _rigidbody.MovePosition(_rigidbody.position + offset * Time.deltaTime);
         transform.rotation = Quaternion.LookRotation(Vector3.Lerp(transform.forward, moveVector, 0.15f));
 
-        //_unitAnimator.SetSpeedMove(_moveVector.magnitude);
+        _playerAnimator.SetSpeedMove(moveVector.magnitude);
     }
 }

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class CharacterController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private CharacterMovement _movement;
+    [SerializeField] private PlayerMovement _movement;
     [SerializeField] private Joystick _joystick;
 
     private float _inputX;

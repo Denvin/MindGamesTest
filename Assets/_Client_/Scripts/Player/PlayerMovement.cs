@@ -9,16 +9,21 @@ public class PlayerMovement : MonoBehaviour
     private PlayerAnimator _playerAnimator;
 
     [SerializeField]
+    private float _speedMoveBase;
+
+    [SerializeField]
+    private float _speedMoveBag;
+    [SerializeField]
     private float _speedMove;
 
     private Rigidbody _rigidbody;
-
+    
 
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        
+        _speedMove = _speedMoveBase;
     }
 
     public void Move(Vector3 moveVector)
@@ -30,5 +35,16 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(Vector3.Lerp(transform.forward, moveVector, 0.15f));
 
         _playerAnimator.SetSpeedMove(moveVector.magnitude);
+    }
+
+    public void SpeedMoveBag()
+    {
+        _playerAnimator.TakeObject();
+        _speedMove = _speedMoveBag;
+    }
+    public void SpeedMoveBase()
+    {
+        _playerAnimator.DropObject();
+        _speedMove = _speedMoveBase;
     }
 }

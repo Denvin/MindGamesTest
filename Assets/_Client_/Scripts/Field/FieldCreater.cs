@@ -25,14 +25,13 @@ public class FieldCreater : MonoBehaviour
     private Vector3 _currentPositionCell;
     private int _countByX = 1;
 
-    private void Start()
+    private void Awake()
     {
         SpawnField();
     }
+
     private void SpawnField()
     {
-        //float sizeX = _columns * _cellPrefab.transform.localScale.x + _offset * (_columns + 1);
-        //float sizeY = _lines * _cellPrefab.transform.localScale.y + _offset * (_lines + 1);
         float sizeX = _cellPrefab.transform.localScale.x * (_columns + 1);
         float sizeY = _cellPrefab.transform.localScale.y * (_lines + 1);
 
@@ -49,6 +48,7 @@ public class FieldCreater : MonoBehaviour
 
         _newCell = Instantiate(_cellPrefab, spawnPosition, _cellPrefab.transform.rotation, transform);
         _newCell.transform.localPosition = spawnPosition;
+        _newCell.transform.parent = transform;
         _field.AddCell(_newCell);
 
         for (int i = 1; i < countCells; i++)
@@ -69,6 +69,7 @@ public class FieldCreater : MonoBehaviour
             
             _newCell = Instantiate(_cellPrefab, spawnPosition, _cellPrefab.transform.rotation, transform);
             _newCell.transform.localPosition = spawnPosition;
+            _newCell.transform.parent = transform;
             _field.AddCell(_newCell);
         }
     }

@@ -23,7 +23,8 @@ public class PlayerController : MonoBehaviour
     private float _inputZ;
     private float _positionCubeY;
     private Vector3 _moveVector;
-    
+
+    public bool IsUseCube => _isUseCube;
 
 
     private void Update()
@@ -31,14 +32,19 @@ public class PlayerController : MonoBehaviour
         Move();
         if (_isCubeZone)
         {
+            Debug.Log("CubeZone");
             UseCubeZone();
         }
     }
     public void EnterCubeZone(Transform cubeTransform)
     {
         _isCubeZone = true;
-        _cubeTransform = cubeTransform;
-        _positionCubeY = cubeTransform.position.y;
+        _cubeTransform = cubeTransform;     
+        
+    }
+    public void ExitCubeZone()
+    {
+        _isCubeZone = false;
     }
     private void UseCubeZone()
     {
@@ -46,17 +52,19 @@ public class PlayerController : MonoBehaviour
         {
             if (!_isUseCube)
             {
-                _cubeTransform.DOMove(_cubePositionStack.position, _timeCubeUp);
-                //_cubeTransform.position = _cubePositionStack.position;
+                _positionCubeY = _cubeTransform.position.y;
                 _cubeTransform.parent = transform;
+                _cubeTransform.DOLocalMove(_cubePositionStack.localPosition, _timeCubeUp);
+                _cubeTransform.localEulerAngles = Vector3.zero;
                 _isUseCube = true;
-                
+                _movement.SpeedMoveBag();
             }
             else
             {
                 _cubeTransform.parent = null;                
-                _isUseCube = false;
                 _cubeTransform.DOMove(new Vector3(_cubeTransform.position.x, _positionCubeY, _cubeTransform.position.z), _timeCubeUp);
+                _movement.SpeedMoveBase();
+                _isUseCube = false;
             }
         }
     }

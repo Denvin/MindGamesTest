@@ -13,4 +13,13 @@ public class PlayerAnimator : MonoBehaviour
     {
         _animator.SetFloat("SpeedMove", speed);
     }
+
+    public void TakeObject()
+    {
+        _animator.SetTrigger("TakeObject");
+    }
+    public void DropObject()
+    {
+        _animator.SetTrigger("DropObject");
+    }
 }

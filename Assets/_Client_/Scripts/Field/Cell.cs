@@ -59,6 +59,7 @@ public class Cell : MonoBehaviour
     public void SetBaseCell()
     {
         _isTrueCell = false;
+        _isHasCube = false;
         _spriteRenderer.color = _baseColor;
     }
     private void OnTriggerEnter(Collider other)
@@ -79,7 +80,7 @@ public class Cell : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.TryGetComponent<Cube>(out Cube cube) && _isCheckCellTrue)
+        if (other.TryGetComponent<Cube>(out Cube cube) && _isCheckCell)
         {
             SetBaseCell();
             OnCubeExited?.Invoke();

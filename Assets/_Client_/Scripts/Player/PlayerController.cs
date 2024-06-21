@@ -31,8 +31,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         if (_isCubeZone)
-        {
-            Debug.Log("CubeZone");
+        {            
             UseCubeZone();
         }
     }
